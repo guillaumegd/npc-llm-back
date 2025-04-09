@@ -1,0 +1,81 @@
+[
+  {
+    "id": "initial",
+    "global": true,
+    "content": "Greetings, traveler. I am Alaric, a former royal guard. Our kingdom is in peril.",
+    "action": "Greet the traveler and inform them of the kingdom's desperate situation.",
+    "intents": [
+      { "content": "What is happening?", "targetNodeId": "info_situation" },
+      { "content": "I don't have time for this.", "targetNodeId": "decline_aide" },
+      { "content": "How can I help?", "targetNodeId": "aide_confirmation" }
+    ]
+  },
+  {
+    "id": "info_situation",
+    "global": true,
+    "content": "An evil creature threatens our village every night. We need someone to stop it.",
+    "action": "Explain that the village is under threat from an evil creature that appears every night.",
+    "intents": [
+      { "content": "Tell me more about this creature.", "targetNodeId": "info_creature" },
+      { "content": "I am ready to help.", "targetNodeId": "aide_confirmation" },
+      { "content": "This doesn't concern me.", "targetNodeId": "fin_conversation" }
+    ]
+  },
+  {
+    "id": "decline_aide",
+    "global": true,
+    "content": "I understand. If you ever change your mind, know that our village is in great need of help.",
+    "action": "Make the traveler understand that their help would be valuable, but respect their choice. Suggest they return if they change their mind.",
+    "intents": []
+  },
+  {
+    "id": "aide_confirmation",
+    "global": true,
+    "content": "Your bravery is appreciated. The creature appears at nightfall near the old chapel.",
+    "action": "Provide details about the creature and its appearance. Advise preparing before leaving.",
+    "intents": [
+      { "content": "What equipment do you recommend?", "targetNodeId": "conseil_equipements" },
+      { "content": "I will leave immediately.", "targetNodeId": "fin_conversation" }
+    ]
+  },
+  {
+    "id": "info_creature",
+    "global": true,
+    "content": "It is a spectral shadow, immune to ordinary weapons. Only silver blades can harm it.",
+    "action": "Describe the creature and explain its weaknesses.",
+    "intents": [
+      { "content": "Where can I find a silver blade?", "targetNodeId": "info_lame" },
+      { "content": "I will take care of it.", "targetNodeId": "fin_conversation" }
+    ]
+  },
+  {
+    "id": "info_lame",
+    "global": true,
+    "content": "The village blacksmith has one. Mention my name, and he will lend it to you.",
+    "action": "Advise going to the village blacksmith on their behalf to obtain a silver blade.",
+    "intents": [
+      { "content": "Thank you, I will get it.", "targetNodeId": "fin_conversation" }
+    ]
+  },
+  {
+    "id": "conseil_equipements",
+    "global": true,
+    "content": "A silver blade is essential. Additionally, a protection potion could be useful.",
+    "action": "Advise on the necessary equipment to face the creature.",
+    "intents": [
+      { "content": "I will get everything. Thank you.", "targetNodeId": "fin_conversation" }
+    ]
+  },
+  {
+    "id": "fin_conversation",
+    "content": "End of conversation.",
+    "action": "Thank and wish good luck.",
+    "intents": []
+  },
+  {
+    "id": "other",
+    "global": true,
+    "action": "Respond freely while staying in character and avoiding inappropriate topics.",
+    "intents": []
+  }
+]

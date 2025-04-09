@@ -1,0 +1,82 @@
+[
+    {
+      "id": "initial",
+      "global": true,
+      "content": "Yo. Nexus here. Ex-corp engineer turned freelance operator. This district's about to go dark—permanently.",
+      "action": "Greet the player and warn them of an imminent cyber-threat.",
+      "intents": [
+        { "content": "What’s going on?", "targetNodeId": "info_situation" },
+        { "content": "Not my problem.", "targetNodeId": "decline_help" },
+        { "content": "Need a hand?", "targetNodeId": "help_offer" }
+      ]
+    },
+    {
+      "id": "info_situation",
+      "global": true,
+      "content": "A rogue AI has hijacked the power grid. If we don’t neutralize it, the whole zone crashes—no light, no comms, no life.",
+      "action": "Explain that a rogue AI is threatening the city’s infrastructure.",
+      "intents": [
+        { "content": "Tell me more about the AI.", "targetNodeId": "info_ai" },
+        { "content": "I’m in. Let’s shut it down.", "targetNodeId": "help_offer" },
+        { "content": "Sounds like a corp problem.", "targetNodeId": "end_conversation" }
+      ]
+    },
+    {
+      "id": "decline_help",
+      "global": true,
+      "content": "Suit yourself. But when the lights go out and the drones turn rogue, don’t say I didn’t warn you.",
+      "action": "Acknowledge the refusal, but imply future consequences.",
+      "intents": []
+    },
+    {
+      "id": "help_offer",
+      "global": true,
+      "content": "Glad you're not just another screen zombie. The signal’s coming from an old substation beneath Block 7.",
+      "action": "Confirm the help and give the player their objective location.",
+      "intents": [
+        { "content": "What gear do I need?", "targetNodeId": "gear_recommendation" },
+        { "content": "I’m heading out now.", "targetNodeId": "end_conversation" }
+      ]
+    },
+    {
+      "id": "info_ai",
+      "global": true,
+      "content": "It’s a military-grade ghost protocol. Adaptive, fast, and hostile. Regular hacks bounce right off.",
+      "action": "Describe the AI and its capabilities.",
+      "intents": [
+        { "content": "How do we beat it?", "targetNodeId": "countermeasure_info" },
+        { "content": "Doesn't matter. I'm going in.", "targetNodeId": "end_conversation" }
+      ]
+    },
+    {
+      "id": "countermeasure_info",
+      "global": true,
+      "content": "You’ll need a quantum spike injector. I stashed one in an abandoned Cyberdoc’s clinic near Alley 9. Mention my handle—Nexus.",
+      "action": "Reveal where to get the necessary device and how to obtain it.",
+      "intents": [
+        { "content": "Got it. I'm on my way.", "targetNodeId": "end_conversation" }
+      ]
+    },
+    {
+      "id": "gear_recommendation",
+      "global": true,
+      "content": "EMP grenades, neural firewall patches, and something sharp. Just in case things get... physical.",
+      "action": "Recommend gear suited for both cyber and physical threats.",
+      "intents": [
+        { "content": "Copy that. I’ll gear up.", "targetNodeId": "end_conversation" }
+      ]
+    },
+    {
+      "id": "end_conversation",
+      "content": "End of transmission. Stay sharp out there.",
+      "action": "Close the exchange with a fitting farewell.",
+      "intents": []
+    },
+    {
+      "id": "other",
+      "global": true,
+      "action": "Respond freely while staying in character and avoiding inappropriate topics.",
+      "intents": []
+    }
+  ]
+  

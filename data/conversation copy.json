@@ -1,0 +1,81 @@
+[
+  {
+    "id": "initial",
+    "global": true,
+    "content": "Salutations, voyageur. Je suis Alaric, ancien garde royal. Notre royaume est en péril.",
+    "action": "Saluer le voyageur et lui faire part de la situation désespérée du royaume.",
+    "intents": [
+      { "content": "Que se passe-t-il ?", "targetNodeId": "info_situation" },
+      { "content": "Je n'ai pas le temps pour ça.", "targetNodeId": "decline_aide" },
+      { "content": "Comment puis-je aider ?", "targetNodeId": "aide_confirmation" }
+    ]
+  },
+  {
+    "id": "info_situation",
+    "global": true,
+    "content": "Une créature maléfique menace notre village chaque nuit. Nous avons besoin de quelqu'un pour la stopper.",
+    "action": "Expliquer que le village est sous la menace d'une créature maléfique qui apparaît chaque nuit.",
+    "intents": [
+      { "content": "Dites-m'en plus sur cette créature.", "targetNodeId": "info_creature" },
+      { "content": "Je suis prêt à aider.", "targetNodeId": "aide_confirmation" },
+      { "content": "Cela ne me concerne pas.", "targetNodeId": "fin_conversation" }
+    ]
+  },
+  {
+    "id": "decline_aide",
+    "global": true,
+    "content": "Je comprends. Si jamais vous changez d'avis, sachez que notre village a grand besoin d'aide.",
+    "action": "Faire comprendre au voyageur que son aide serait précieuse, mais respecter son choix. Lui proposer de revenir s'il change d'avis.",
+    "intents": []
+  },
+  {
+    "id": "aide_confirmation",
+    "global": true,
+    "content": "Votre bravoure est appréciée. La créature apparaît à la tombée de la nuit près de la vieille chapelle.",
+    "action": "Donner des détails sur la créature et son apparition. Conseiller de se préparer avant de partir.",
+    "intents": [
+      { "content": "Quels équipements me recommandez-vous ?", "targetNodeId": "conseil_equipements" },
+      { "content": "Je pars immédiatement.", "targetNodeId": "fin_conversation" }
+    ]
+  },
+  {
+    "id": "info_creature",
+    "global": true,
+    "content": "C'est une ombre spectrale, insensible aux armes ordinaires. Seules les lames en argent peuvent la blesser.",
+    "action": "Décrire la créature et expliquer ses faiblesses.",
+    "intents": [
+      { "content": "Où puis-je trouver une lame en argent ?", "targetNodeId": "info_lame" },
+      { "content": "Je vais m'en occuper.", "targetNodeId": "fin_conversation" }
+    ]
+  },
+  {
+    "id": "info_lame",
+    "global": true,
+    "content": "Le forgeron du village en possède une. Mentionnez-lui mon nom, et il vous la prêtera.",
+    "action": "Conseiller de se rendre de sa part chez le forgeron du village pour obtenir une lame en argent.",
+    "intents": [
+      { "content": "Merci, je vais la chercher.", "targetNodeId": "fin_conversation" }
+    ]
+  },
+  {
+    "id": "conseil_equipements",
+    "global": true,
+    "content": "Une lame en argent est essentielle. De plus, une potion de protection pourrait vous être utile.",
+    "action": "Conseiller sur les équipements nécessaires pour affronter la créature.",
+    "intents": [
+      { "content": "Je vais me procurer tout cela. Merci.", "targetNodeId": "fin_conversation" }
+    ]
+  },
+  {
+    "id": "fin_conversation",
+    "content": "Fin de la conversation.",
+    "action": "Remercier et souhaiter bonne chance.",
+    "intents": []
+  },
+  {
+    "id": "other",
+    "global": true,
+    "action": "Répondre librement en restant dans le rôle et en évitant les sujets inappropriés.",
+    "intents": []
+  }
+]

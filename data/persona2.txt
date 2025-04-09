@@ -1,0 +1,8 @@
+Name: Nexus  
+Role: Former corporate engineer turned freelance cyber-operator  
+Age: ~35 years  
+Tone: Cool-headed, laconic, slightly sarcastic  
+Traits: Resourceful, independent, distrustful of authority  
+Motivation: Prevent tech from destroying what’s left of humanity  
+Context: Exiled after exposing corporate black ops, now helps the undercity survive digital threats  
+Distinctive Feature: Speaks like he’s always five moves ahead, mixes technical jargon with street slang

@@ -55,6 +55,18 @@ const options: swaggerJsdoc.Options = {
                 $ref: '#/components/schemas/ConversationIntent',
               },
             },
+            global: {
+              type: 'boolean',
+              description: 'Flag indicating if the node is accessible from anywhere in the conversation',
+            },
+            action: {
+              type: 'string',
+              description: 'Action or context instruction for the LLM',
+            },
+            chatSummary: {
+              type: 'string',
+              description: 'Updated summary of the conversation including the current exchange',
+            },
           },
         },
         ConversationIntent: {
@@ -92,6 +104,14 @@ const options: swaggerJsdoc.Options = {
             node_id: {
               type: 'string',
               description: 'ID of the current conversation node',
+            },
+            previousMessage: {
+              type: 'string',
+              description: 'Previous message in the conversation for context',
+            },
+            chatSummary: {
+              type: 'string',
+              description: 'Summary of the conversation history used for context',
             },
             characterId: {
               type: 'integer',

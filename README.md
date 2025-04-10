@@ -51,6 +51,9 @@ The system leverages the Mistral AI API:
 - JSON-formatted communication for structured responses
 - System prompts combine persona definition and chat context
 
+### Intent Classification Agent
+The project uses a specialized Mistral AI agent for intent classification. The [AGENT.md](./AGENT.md) file contains the complete definition, configuration, and examples needed to create this agent in the Mistral AI platform. This document serves as a reference for understanding the intent classification system and provides detailed instructions for agent deployment.
+
 ### Hybrid Approach to NPC Behavior
 The implementation balances structure and flexibility:
 - Predefined conversation trees guide key narrative points
@@ -62,6 +65,7 @@ The implementation balances structure and flexibility:
 ```
 ├── package.json          # Project dependencies and scripts
 ├── tsconfig.json         # TypeScript configuration
+├── AGENT.md              # Intent classification agent instructions
 ├── data/                 # Data files for conversations and personas
 │   ├── conversation*.json  # Structured dialogue nodes for NPCs
 │   └── persona*.txt        # Character definitions for NPCs

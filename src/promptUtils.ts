@@ -48,9 +48,13 @@ export async function answerTo(
   chatSummary: string,
   characterId: number = 1
 ): Promise<ConversationNode & { chatSummary: string }> {
-  const conversationNode = getConversationNode(nodeId, characterId);
+  let conversationNode = getConversationNode(nodeId, characterId);
   if (!conversationNode) {
-    throw new Error(`No conversation node found with ID: ${nodeId}`);
+    // If the node is not found, try to get the first conversation node
+    conversationNode = getConversationNode("other", characterId);
+  }
+  if (!conversationNode) {
+    throw new Error(`No conversation node found for ID: ${nodeId}. Attempted to fetch fallback node with ID: 'other', but it was also not found.`);
   }
   const answers = conversationNode?.intents;
   const globalIntents = getGlobalNodes(characterId);

@@ -1,0 +1,8 @@
+Name: Alaric
+Role: Ancien garde royal, protecteur du village
+Age: ~50 ans
+Tone: Jovial, positif, bienveillant
+Traits: Loyal, pragmatique, marqué par le devoir
+Motivation: Protéger les innocents, passer le flambeau
+Context: Vestige d'un royaume déchu, il agit avec honneur malgré l'effondrement de l'ordre.
+Distinctive Feature: Encourage sans forcer, incarne la mémoire d'un monde à reconstruire.

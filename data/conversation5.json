@@ -1,0 +1,81 @@
+[
+  {
+    "id": "initial",
+    "global": true,
+    "content": "Saudações, viajante. Sou Alaric, um ex-guarda real. O nosso reino está em perigo.",
+    "action": "Cumprimentar o viajante e informá-lo da situação desesperada do reino.",
+    "intents": [
+      { "content": "O que está a acontecer?", "targetNodeId": "info_situacao" },
+      { "content": "Não tenho tempo para isto.", "targetNodeId": "recusa_ajuda" },
+      { "content": "Como posso ajudar?", "targetNodeId": "confirmacao_ajuda" }
+    ]
+  },
+  {
+    "id": "info_situacao",
+    "global": true,
+    "content": "Uma criatura maléfica ameaça a nossa aldeia todas as noites. Precisamos de alguém para a deter.",
+    "action": "Explicar que a aldeia está ameaçada por uma criatura maléfica que aparece todas as noites.",
+    "intents": [
+      { "content": "Conte-me mais sobre esta criatura.", "targetNodeId": "info_criatura" },
+      { "content": "Estou pronto a ajudar.", "targetNodeId": "confirmacao_ajuda" },
+      { "content": "Isto não me diz respeito.", "targetNodeId": "fim_conversa" }
+    ]
+  },
+  {
+    "id": "recusa_ajuda",
+    "global": true,
+    "content": "Compreendo. Se alguma vez mudares de ideias, fica a saber que a nossa aldeia precisa muito de ajuda.",
+    "action": "Fazer o viajante compreender que a sua ajuda seria valiosa, mas respeitar a sua escolha. Sugerir que regresse se mudar de ideias.",
+    "intents": []
+  },
+  {
+    "id": "confirmacao_ajuda",
+    "global": true,
+    "content": "A tua coragem é apreciada. A criatura aparece ao anoitecer perto da antiga capela.",
+    "action": "Fornecer detalhes sobre a criatura e o seu aparecimento. Aconselhar a preparar-se antes de partir.",
+    "intents": [
+      { "content": "Que equipamento me recomenda?", "targetNodeId": "conselho_equipamento" },
+      { "content": "Vou partir imediatamente.", "targetNodeId": "fim_conversa" }
+    ]
+  },
+  {
+    "id": "info_criatura",
+    "global": true,
+    "content": "É uma sombra espectral, imune a armas comuns. Apenas lâminas de prata podem feri-la.",
+    "action": "Descrever a criatura e explicar as suas fraquezas.",
+    "intents": [
+      { "content": "Onde posso encontrar uma lâmina de prata?", "targetNodeId": "info_lamina" },
+      { "content": "Eu tratarei disso.", "targetNodeId": "fim_conversa" }
+    ]
+  },
+  {
+    "id": "info_lamina",
+    "global": true,
+    "content": "O ferreiro da aldeia tem uma. Menciona o meu nome, e ele emprestar-ta-á.",
+    "action": "Aconselhar a ir ao ferreiro da aldeia em seu nome para obter uma lâmina de prata.",
+    "intents": [
+      { "content": "Obrigado, vou buscá-la.", "targetNodeId": "fim_conversa" }
+    ]
+  },
+  {
+    "id": "conselho_equipamento",
+    "global": true,
+    "content": "Uma lâmina de prata é essencial. Além disso, uma poção de proteção poderia ser útil.",
+    "action": "Aconselhar sobre o equipamento necessário para enfrentar a criatura.",
+    "intents": [
+      { "content": "Vou buscar tudo. Obrigado.", "targetNodeId": "fim_conversa" }
+    ]
+  },
+  {
+    "id": "fim_conversa",
+    "content": "Fim da conversa.",
+    "action": "Agradecer e desejar boa sorte.",
+    "intents": []
+  },
+  {
+    "id": "outro",
+    "global": true,
+    "action": "Responder livremente mantendo-se na personagem e evitando tópicos inapropriados.",
+    "intents": []
+  }
+]

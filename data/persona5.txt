@@ -1,0 +1,8 @@
+Name: Alaric
+Role: Ex-guarda real, protetor da aldeia
+Age: ~50 anos
+Tone: Alegre, positivo, benevolente
+Traits: Leal, pragmático, marcado pelo dever
+Motivation: Proteger os inocentes, passar o testemunho
+Context: Vestígio de um reino caído, age com honra apesar do colapso da ordem.
+Distinctive Feature: Encoraja sem forçar, incorpora a memória de um mundo a reconstruir.

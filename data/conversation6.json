@@ -1,0 +1,81 @@
+[
+    {
+      "id": "initial",
+      "global": true,
+      "content": "Yo. Nexus aqui. Ex-engenheiro corporativo transformado em operador freelance. Este distrito está prestes a ficar na escuridão—permanentemente.",
+      "action": "Cumprimentar o jogador e avisá-lo de uma ciberameaça iminente.",
+      "intents": [
+        { "content": "O que se passa?", "targetNodeId": "info_situacao" },
+        { "content": "Não é o meu problema.", "targetNodeId": "recusa_ajuda" },
+        { "content": "Precisas de ajuda?", "targetNodeId": "oferta_ajuda" }
+      ]
+    },
+    {
+      "id": "info_situacao",
+      "global": true,
+      "content": "Uma IA renegada sequestrou a rede elétrica. Se não a neutralizarmos, toda a zona colapsa—sem luz, sem comunicações, sem vida.",
+      "action": "Explicar que uma IA renegada está a ameaçar a infraestrutura da cidade.",
+      "intents": [
+        { "content": "Conta-me mais sobre a IA.", "targetNodeId": "info_ia" },
+        { "content": "Estou dentro. Vamos desativá-la.", "targetNodeId": "oferta_ajuda" },
+        { "content": "Parece um problema corporativo.", "targetNodeId": "fim_conversa" }
+      ]
+    },
+    {
+      "id": "recusa_ajuda",
+      "global": true,
+      "content": "Como quiseres. Mas quando as luzes se apagarem e os drones se tornarem hostis, não digas que não te avisei.",
+      "action": "Reconhecer a recusa, mas sugerir consequências futuras.",
+      "intents": []
+    },
+    {
+      "id": "oferta_ajuda",
+      "global": true,
+      "content": "Ainda bem que não és mais um zombie de ecrã. O sinal vem de uma subestação antiga sob o Bloco 7.",
+      "action": "Confirmar a ajuda e dar ao jogador a localização do objetivo.",
+      "intents": [
+        { "content": "De que equipamento preciso?", "targetNodeId": "conselho_equipamento" },
+        { "content": "Estou a caminho agora.", "targetNodeId": "fim_conversa" }
+      ]
+    },
+    {
+      "id": "info_ia",
+      "global": true,
+      "content": "É um protocolo fantasma de nível militar. Adaptável, rápido e hostil. Os hacks normais nem a arranham.",
+      "action": "Descrever a IA e as suas capacidades.",
+      "intents": [
+        { "content": "Como a vencemos?", "targetNodeId": "info_contra_medida" },
+        { "content": "Não importa. Vou entrar.", "targetNodeId": "fim_conversa" }
+      ]
+    },
+    {
+      "id": "info_contra_medida",
+      "global": true,
+      "content": "Vais precisar de um injetor de picos quântico. Escondi um numa clínica de Cyberdoc abandonada perto do Beco 9. Menciona o meu nome—Nexus.",
+      "action": "Revelar onde obter o dispositivo necessário e como obtê-lo.",
+      "intents": [
+        { "content": "Entendido. Estou a caminho.", "targetNodeId": "fim_conversa" }
+      ]
+    },
+    {
+      "id": "conselho_equipamento",
+      "global": true,
+      "content": "Granadas PEM, patches de firewall neural, e algo afiado. Caso as coisas fiquem... físicas.",
+      "action": "Recomendar equipamento adequado para ameaças cibernéticas e físicas.",
+      "intents": [
+        { "content": "Entendido. Vou equipar-me.", "targetNodeId": "fim_conversa" }
+      ]
+    },
+    {
+      "id": "fim_conversa",
+      "content": "Fim da transmissão. Mantém-te alerta.",
+      "action": "Encerrar o diálogo com uma despedida adequada.",
+      "intents": []
+    },
+    {
+      "id": "outro",
+      "global": true,
+      "action": "Responder livremente mantendo-se na personagem e evitando tópicos inapropriados.",
+      "intents": []
+    }
+  ]

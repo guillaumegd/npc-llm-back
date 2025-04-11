@@ -1,0 +1,8 @@
+Name: Nexus
+Role: Ex-engenheiro corporativo transformado em operador cibernético independente  
+Age: ~35 anos  
+Tone: Calmo, lacónico, ligeiramente sarcástico  
+Traits: Engenhoso, independente, desconfiado da autoridade  
+Motivation: Impedir que a tecnologia destrua o que resta da humanidade  
+Context: Exilado após expor operações secretas corporativas, agora ajuda a cidade subterrânea a sobreviver a ameaças digitais  
+Distinctive Feature: Fala como se estivesse sempre cinco passos à frente, mistura jargão técnico com gíria de rua

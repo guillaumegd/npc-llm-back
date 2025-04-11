@@ -5,7 +5,10 @@ import { ConversationNode, ConversationIntent } from "./types/conversation";
 
 // Function to prepare the system prompt based on persona.txt
 function preparePersonaSystemPrompt(characterId: number = 1): string {
-  const personaFilePath = path.join(__dirname, `../data/persona${characterId}.txt`);
+  const personaFilePath = path.join(
+    __dirname,
+    `../data/persona${characterId}.txt`
+  );
 
   try {
     const personaContent = fs.readFileSync(personaFilePath, "utf-8");
@@ -29,12 +32,14 @@ function prepareChatSummarySystemPrompt(chatSummary: string): string {
  * @param chatSummary The summary of the chat
  * @param characterId The character ID to use (defaults to 1)
  */
-export function prepareSystemPrompt(chatSummary: string, characterId: number = 1): string[] {
+export function prepareSystemPrompt(
+  chatSummary: string,
+  characterId: number = 1
+): string[] {
   const personaPrompt = preparePersonaSystemPrompt(characterId);
   const chatSummaryPrompt = prepareChatSummarySystemPrompt(chatSummary);
   return [personaPrompt, chatSummaryPrompt];
 }
-  
 
 export async function answerTo(
   message: string,
@@ -50,7 +55,12 @@ export async function answerTo(
   const answers = conversationNode?.intents;
   const globalIntents = getGlobalNodes(characterId);
 
-  const allIntentsIds = [...new Set([...answers.map((intent) => intent.targetNodeId), ...globalIntents.map((intent) => intent.id)])];
+  const allIntentsIds = [
+    ...new Set([
+      ...answers.map((intent) => intent.targetNodeId),
+      ...globalIntents.map((intent) => intent.id),
+    ]),
+  ];
   const allIntents = getConversationNodes(allIntentsIds, characterId);
   if (!allIntents || allIntents.length === 0) {
     throw new Error(`No intents found for node ID: ${nodeId}`);
@@ -75,7 +85,11 @@ export async function answerTo(
       throw new Error(`No matching answer found for intent: ${intent}`);
     }
     // Return the target node
-    return {...matchingIntent, content: intent.message, chatSummary: `${chatSummary}\n${intent.chatSummary}`};
+    return {
+      ...matchingIntent,
+      content: intent.message,
+      chatSummary: `${chatSummary}\n${intent.chatSummary}`,
+    };
   } catch (error) {
     console.error("Error classifying intent:", error);
     throw new Error("Failed to classify intent.");
@@ -90,10 +104,10 @@ export async function answerTo(
  */
 function loadConversationNodes(characterId: number = 1): ConversationNode[] {
   // Validate characterId
-  if (characterId !== 1 && characterId !== 2) {
-    characterId = 1; // Default to 1 if invalid
+  if (characterId < 1 || characterId > 6) {
+    throw new Error(`Invalid characterId: ${characterId}. It must be between 1 and 6.`);
   }
-  
+
   const conversationFilePath = path.join(
     __dirname,
     `../data/conversation${characterId}.json`
@@ -107,11 +121,14 @@ function loadConversationNodes(characterId: number = 1): ConversationNode[] {
   }
 }
 
-export function getConversationNode(nodeId: string, characterId: number = 1): ConversationNode | null {
+export function getConversationNode(
+  nodeId: string,
+  characterId: number = 1
+): ConversationNode | null {
   try {
     const conversationNodes = loadConversationNodes(characterId);
     // Find the node with the matching ID
-    const node = conversationNodes.find(item => item.id === nodeId);
+    const node = conversationNodes.find((item) => item.id === nodeId);
     // Return the node if found, otherwise return null
     return node ?? null;
   } catch (error) {
@@ -125,11 +142,14 @@ export function getConversationNode(nodeId: string, characterId: number = 1): Co
  * @param characterId The character ID to use (defaults to 1)
  * @returns Array of conversation nodes
  */
-export function getConversationNodes(nodeIds: string[], characterId: number = 1): ConversationNode[] {
+export function getConversationNodes(
+  nodeIds: string[],
+  characterId: number = 1
+): ConversationNode[] {
   try {
     const conversationNodes = loadConversationNodes(characterId);
     // Filter nodes based on provided IDs
-    return conversationNodes.filter(item => nodeIds.includes(item.id));
+    return conversationNodes.filter((item) => nodeIds.includes(item.id));
   } catch (error) {
     throw error; // Re-throw the error from loadConversationNodes
   }
@@ -139,7 +159,7 @@ export function getGlobalNodes(characterId: number = 1): ConversationNode[] {
   try {
     const conversationNodes = loadConversationNodes(characterId);
     // Find nodes with global flag set to true
-    return conversationNodes.filter(item => item.global === true);
+    return conversationNodes.filter((item) => item.global === true);
   } catch (error) {
     throw error; // Re-throw the error from loadConversationNodes
   }
@@ -151,6 +171,8 @@ export function getGlobalNodes(characterId: number = 1): ConversationNode[] {
  * @param characterId The character ID to use (defaults to 1)
  * @returns The first conversation node or null if none exists
  */
-export function getFirstConversationNode(characterId: number = 1): ConversationNode | null {
+export function getFirstConversationNode(
+  characterId: number = 1
+): ConversationNode | null {
   return getConversationNode("initial", characterId);
 }

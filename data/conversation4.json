@@ -1,0 +1,81 @@
+[
+    {
+      "id": "initial",
+      "global": true,
+      "content": "Yo. Nexus ici. Ancien ingénieur corpo reconverti en opérateur freelance. Ce district est sur le point de sombrer dans le noir—définitivement.",
+      "action": "Saluer le joueur et l'avertir d'une cyber-menace imminente.",
+      "intents": [
+        { "content": "Que se passe-t-il ?", "targetNodeId": "info_situation" },
+        { "content": "Pas mon problème.", "targetNodeId": "refus_aide" },
+        { "content": "Besoin d'un coup de main ?", "targetNodeId": "offre_aide" }
+      ]
+    },
+    {
+      "id": "info_situation",
+      "global": true,
+      "content": "Une IA renégate a détourné le réseau électrique. Si on ne la neutralise pas, toute la zone s'effondre—pas de lumière, pas de communications, pas de vie.",
+      "action": "Expliquer qu'une IA renégate menace l'infrastructure de la ville.",
+      "intents": [
+        { "content": "Dis-m'en plus sur cette IA.", "targetNodeId": "info_ia" },
+        { "content": "Je suis partant. Neutralisons-la.", "targetNodeId": "offre_aide" },
+        { "content": "Ça ressemble à un problème de corpo.", "targetNodeId": "fin_conversation" }
+      ]
+    },
+    {
+      "id": "refus_aide",
+      "global": true,
+      "content": "À ta guise. Mais quand les lumières s'éteindront et que les drones deviendront hostiles, ne dis pas que je ne t'avais pas prévenu.",
+      "action": "Accepter le refus, mais laisser entendre les conséquences futures.",
+      "intents": []
+    },
+    {
+      "id": "offre_aide",
+      "global": true,
+      "content": "Content que tu ne sois pas qu'un zombie d'écran de plus. Le signal provient d'une vieille sous-station sous le Bloc 7.",
+      "action": "Confirmer l'aide et donner au joueur l'emplacement de son objectif.",
+      "intents": [
+        { "content": "De quel équipement ai-je besoin ?", "targetNodeId": "conseil_equipement" },
+        { "content": "J'y vais de ce pas.", "targetNodeId": "fin_conversation" }
+      ]
+    },
+    {
+      "id": "info_ia",
+      "global": true,
+      "content": "C'est un protocole fantôme militaire. Adaptatif, rapide et hostile. Les hacks ordinaires rebondissent dessus.",
+      "action": "Décrire l'IA et ses capacités.",
+      "intents": [
+        { "content": "Comment on la bat ?", "targetNodeId": "info_contre_mesure" },
+        { "content": "Peu importe. J'y vais.", "targetNodeId": "fin_conversation" }
+      ]
+    },
+    {
+      "id": "info_contre_mesure",
+      "global": true,
+      "content": "Il te faudra un injecteur de pointe quantique. J'en ai planqué un dans une clinique de Cyberdoc abandonnée près de l'Allée 9. Mentionne mon pseudo—Nexus.",
+      "action": "Révéler où obtenir l'appareil nécessaire et comment l'acquérir.",
+      "intents": [
+        { "content": "Compris. Je m'y rends.", "targetNodeId": "fin_conversation" }
+      ]
+    },
+    {
+      "id": "conseil_equipement",
+      "global": true,
+      "content": "Des grenades IEM, des patchs pare-feu neuraux, et quelque chose de tranchant. Au cas où les choses deviennent... physiques.",
+      "action": "Recommander un équipement adapté aux menaces cyber et physiques.",
+      "intents": [
+        { "content": "Reçu. Je vais m'équiper.", "targetNodeId": "fin_conversation" }
+      ]
+    },
+    {
+      "id": "fin_conversation",
+      "content": "Fin de transmission. Reste sur tes gardes.",
+      "action": "Clore l'échange avec un adieu approprié.",
+      "intents": []
+    },
+    {
+      "id": "autre",
+      "global": true,
+      "action": "Répondre librement tout en restant dans le personnage et en évitant les sujets inappropriés.",
+      "intents": []
+    }
+  ]

@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node dist/server.js",
     "start:dev": "ts-node-dev src/server.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "vercel-build": "npm run build",
+    "vercel-start": "npm run start"
   },
   "author": "",
   "license": "ISC",

@@ -8,7 +8,7 @@ The instructions in this file are used to configure and deploy the agent in the 
 
 ## Configuration
 
-**Model:** mistral-large-latest
+**Model:** mistral-small
 
 **Randomness:** 0.1
 

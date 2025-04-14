@@ -3,6 +3,9 @@
 ## Description
 This project is a research initiative focused on leveraging Large Language Models (LLMs) to create more natural and immersive Non-Player Characters (NPCs) in interactive environments. The goal is to enable NPCs to exhibit controlled behavior, personality traits, and key conversational points, enhancing the overall user experience.
 
+## Demo
+Try the live demo: [https://npc-llm-front.vercel.app/](https://npc-llm-front.vercel.app/)
+
 The project explores techniques to:
 - Define and control the character and role of NPCs.
 - Guide conversations with key points while maintaining natural dialogue flow.

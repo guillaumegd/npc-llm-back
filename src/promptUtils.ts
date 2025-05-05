@@ -24,7 +24,10 @@ function preparePersonaSystemPrompt(characterId: number = 1): string {
  * @param context The chat summary
  */
 function prepareChatSummarySystemPrompt(chatSummary: string): string {
-  return `Here is the summary of the conversation so far: \n\n${chatSummary}\n\nUse this context to provide a more relevant and engaging response.`;
+  const exchanges = chatSummary.split('\n');
+  const limitedExchanges = exchanges.slice(-5);
+  const limitedChatSummary = limitedExchanges.join('\n');
+  return `Here is the summary of the conversation so far: \n\n${limitedChatSummary}\n\nUse this context to provide a more relevant and engaging response.`;
 }
 
 /**

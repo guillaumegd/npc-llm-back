@@ -63,6 +63,7 @@ const mistralApiClient = axios.create({
  * @param intents An array of possible intents to classify the message against
  * @param chatSummary The summary of the chat context
  * @param characterId The character ID to use (defaults to 1)
+ * @param retrievedContext Optional array of relevant text snippets from RAG
  * @returns A promise that resolves to the classified intent
  */
 export async function classifyIntent(
@@ -70,7 +71,8 @@ export async function classifyIntent(
   previousPhrase: string,
   intents: ConversationNodeMinimal[],
   chatSummary: string,
-  characterId: number = 1
+  characterId: number = 1,
+  retrievedContext: string[] = []
 ): Promise<IntentClassificationResponse> {
   const agentId = process.env.MISTRAL_AGENT_INTENT_CLASSIFIER;
 
@@ -80,7 +82,7 @@ export async function classifyIntent(
     );
   }
 
-  const systemPrompts = prepareSystemPrompt(chatSummary, characterId).map((prompt) => ({
+  const systemPrompts = prepareSystemPrompt(chatSummary, characterId, retrievedContext).map((prompt) => ({
     role: "system",
     content: prompt,
   }));

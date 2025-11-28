@@ -31,17 +31,38 @@ function prepareChatSummarySystemPrompt(chatSummary: string): string {
 }
 
 /**
+ * Prepares the system prompt for retrieved context from RAG
+ * @param retrievedContext Array of relevant text snippets
+ */
+function prepareRetrievedContextPrompt(retrievedContext: string[]): string {
+  if (!retrievedContext || retrievedContext.length === 0) {
+    return "";
+  }
+  const contextStr = retrievedContext.join("\n\n---\n\n");
+  return `Here is some relevant background information that may help you respond:\n\n${contextStr}\n\nUse this information if relevant to the conversation.`;
+}
+
+/**
  * Prepares the system prompt for the intent classification
  * @param chatSummary The summary of the chat
  * @param characterId The character ID to use (defaults to 1)
+ * @param retrievedContext Optional array of relevant text snippets from RAG
  */
 export function prepareSystemPrompt(
   chatSummary: string,
-  characterId: number = 1
+  characterId: number = 1,
+  retrievedContext: string[] = []
 ): string[] {
   const personaPrompt = preparePersonaSystemPrompt(characterId);
   const chatSummaryPrompt = prepareChatSummarySystemPrompt(chatSummary);
-  return [personaPrompt, chatSummaryPrompt];
+  const prompts = [personaPrompt, chatSummaryPrompt];
+  
+  const retrievedContextPrompt = prepareRetrievedContextPrompt(retrievedContext);
+  if (retrievedContextPrompt) {
+    prompts.push(retrievedContextPrompt);
+  }
+  
+  return prompts;
 }
 
 export async function answerTo(
@@ -49,7 +70,8 @@ export async function answerTo(
   nodeId: string,
   previousMessage: string,
   chatSummary: string,
-  characterId: number = 1
+  characterId: number = 1,
+  retrievedContext: string[] = []
 ): Promise<ConversationNode & { chatSummary: string }> {
   let conversationNode = getConversationNode(nodeId, characterId);
   if (!conversationNode) {
@@ -83,7 +105,8 @@ export async function answerTo(
       previousMessage,
       minimalIntents,
       chatSummary,
-      characterId
+      characterId,
+      retrievedContext
     );
     const matchingIntent = allIntents.find(
       (answer) => answer.id === intent.intent

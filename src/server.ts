@@ -11,6 +11,7 @@ import redoc from 'redoc-express';
 import fs from 'fs';
 import path from 'path';
 import cors from 'cors';
+import { indexAll, search as ragSearch, getStatus as getKbStatus } from './rag';
 
 // Load environment variables from a .env file into process.env
 dotenv.config();
@@ -106,17 +107,169 @@ app.post("/chat", async (req: Request, res: Response<ConversationNode | ErrorRes
       return;
     }
 
-    const answer = await answerTo(message, nodeId, previousMessage, chatSummary, characterId);
+    // Retrieve relevant context from RAG (gracefully fallback if unavailable)
+    let retrievedContext: string[] = [];
+    try {
+      retrievedContext = await ragSearch(message);
+    } catch (err) {
+      console.warn("RAG search failed, continuing without retrieved context:", err);
+    }
+
+    const answer = await answerTo(message, nodeId, previousMessage, chatSummary, characterId, retrievedContext);
     res.json(answer);
   } catch (error) {
     res.status(500).json({ error: "Failed to answer." });
   }
 });
 
+/**
+ * @swagger
+ * /kb/reindex:
+ *   post:
+ *     summary: Reindex all static documents into the knowledge base
+ *     description: Gathers all documents from data/*.json, data/*.txt, and README.md, chunks them, computes embeddings, and upserts vectors into Qdrant.
+ *     tags: [Knowledge Base]
+ *     responses:
+ *       200:
+ *         description: Reindexing completed successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 indexed:
+ *                   type: number
+ *                   description: Number of chunks indexed
+ *       500:
+ *         description: Server error during reindexing
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+app.post("/kb/reindex", async (req: Request, res: Response) => {
+  try {
+    const result = await indexAll();
+    res.json(result);
+  } catch (error) {
+    console.error("Error during reindexing:", error);
+    res.status(500).json({ error: "Failed to reindex knowledge base." });
+  }
+});
+
+/**
+ * @swagger
+ * /kb/search:
+ *   post:
+ *     summary: Search the knowledge base for relevant snippets
+ *     description: Embeds the query and retrieves top-K relevant snippets from Qdrant.
+ *     tags: [Knowledge Base]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - query
+ *             properties:
+ *               query:
+ *                 type: string
+ *                 description: The search query
+ *     responses:
+ *       200:
+ *         description: Search results
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 snippets:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *       400:
+ *         description: Missing query parameter
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Server error during search
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+app.post("/kb/search", async (req: Request, res: Response) => {
+  try {
+    const { query } = req.body;
+    if (!query) {
+      res.status(400).json({ error: "Missing 'query' parameter." });
+      return;
+    }
+    const snippets = await ragSearch(query);
+    res.json({ snippets });
+  } catch (error) {
+    console.error("Error during KB search:", error);
+    res.status(500).json({ error: "Failed to search knowledge base." });
+  }
+});
+
+/**
+ * @swagger
+ * /kb/status:
+ *   get:
+ *     summary: Get the status of the knowledge base
+ *     description: Returns the collection name, points count, and status of the Qdrant collection.
+ *     tags: [Knowledge Base]
+ *     responses:
+ *       200:
+ *         description: Knowledge base status
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 collection:
+ *                   type: string
+ *                 pointsCount:
+ *                   type: number
+ *                   nullable: true
+ *                 status:
+ *                   type: string
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+app.get("/kb/status", async (req: Request, res: Response) => {
+  try {
+    const status = await getKbStatus();
+    res.json(status);
+  } catch (error) {
+    console.error("Error getting KB status:", error);
+    res.status(500).json({ error: "Failed to get knowledge base status." });
+  }
+});
+
 // Start the server and listen on the specified port
-app.listen(port, () => {
+app.listen(port, async () => {
   // Log a message when the server is successfully running
   console.log(`Server is running on http://localhost:${port}`);
   console.log(`API Documentation available at http://localhost:${port}/api-docs`);
   console.log(`ReDoc documentation available at http://localhost:${port}/docs`);
+  
+  // Auto-index if KB_AUTO_INDEX is set to true
+  if (process.env.KB_AUTO_INDEX === 'true') {
+    console.log("KB_AUTO_INDEX is enabled, starting auto-indexing...");
+    try {
+      const result = await indexAll();
+      console.log(`Auto-indexing complete: ${result.indexed} chunks indexed.`);
+    } catch (err) {
+      console.error("Auto-indexing failed:", err);
+    }
+  }
 });

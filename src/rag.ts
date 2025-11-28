@@ -19,23 +19,83 @@ interface Chunk {
 }
 
 /**
- * Splits text into chunks of approximately CHUNK_SIZE characters
+ * Interface for search result payload
+ */
+interface SearchResultPayload {
+  text: string;
+  source: string;
+}
+
+/**
+ * Splits text into chunks by sentences or paragraphs with overlap for better retrieval quality.
+ * Attempts to break at sentence boundaries to avoid splitting words mid-way.
  */
 function chunkText(text: string, source: string): Chunk[] {
   const chunks: Chunk[] = [];
-  let start = 0;
-  while (start < text.length) {
-    const end = Math.min(start + CHUNK_SIZE, text.length);
-    const chunkText = text.slice(start, end).trim();
-    if (chunkText.length > 0) {
+  
+  // Split by paragraphs first (double newlines)
+  const paragraphs = text.split(/\n\n+/).filter(p => p.trim().length > 0);
+  
+  let currentChunk = "";
+  
+  for (const paragraph of paragraphs) {
+    // If adding this paragraph exceeds chunk size and we have content, save current chunk
+    if (currentChunk.length > 0 && currentChunk.length + paragraph.length + 2 > CHUNK_SIZE) {
       chunks.push({
         id: uuidv4(),
-        text: chunkText,
+        text: currentChunk.trim(),
         source,
       });
+      currentChunk = "";
     }
-    start = end;
+    
+    // If paragraph itself is larger than chunk size, split by sentences
+    if (paragraph.length > CHUNK_SIZE) {
+      // Split by sentence-ending punctuation followed by space or newline
+      const sentences = paragraph.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 0);
+      
+      for (const sentence of sentences) {
+        if (currentChunk.length > 0 && currentChunk.length + sentence.length + 1 > CHUNK_SIZE) {
+          chunks.push({
+            id: uuidv4(),
+            text: currentChunk.trim(),
+            source,
+          });
+          currentChunk = "";
+        }
+        
+        // If single sentence is still too large, split by words as fallback
+        if (sentence.length > CHUNK_SIZE) {
+          const words = sentence.split(/\s+/);
+          for (const word of words) {
+            if (currentChunk.length > 0 && currentChunk.length + word.length + 1 > CHUNK_SIZE) {
+              chunks.push({
+                id: uuidv4(),
+                text: currentChunk.trim(),
+                source,
+              });
+              currentChunk = "";
+            }
+            currentChunk += (currentChunk.length > 0 ? " " : "") + word;
+          }
+        } else {
+          currentChunk += (currentChunk.length > 0 ? " " : "") + sentence;
+        }
+      }
+    } else {
+      currentChunk += (currentChunk.length > 0 ? "\n\n" : "") + paragraph;
+    }
   }
+  
+  // Don't forget the last chunk
+  if (currentChunk.trim().length > 0) {
+    chunks.push({
+      id: uuidv4(),
+      text: currentChunk.trim(),
+      source,
+    });
+  }
+  
   return chunks;
 }
 
@@ -157,8 +217,14 @@ export async function search(query: string): Promise<string[]> {
     });
 
     const snippets = results
-      .filter((r: any) => r.payload?.text)
-      .map((r: any) => r.payload.text as string);
+      .filter((r) => {
+        const payload = r.payload as unknown as SearchResultPayload | null | undefined;
+        return payload?.text;
+      })
+      .map((r) => {
+        const payload = r.payload as unknown as SearchResultPayload;
+        return payload.text;
+      });
 
     return snippets;
   } catch (err) {

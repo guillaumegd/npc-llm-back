@@ -112,8 +112,8 @@
   {
     "id": "it_setup",
     "global": true,
-    "content": "IT will provide your laptop and set up your email, Slack, and other system accounts before your first day. You'll receive login credentials via email. If you have any issues accessing systems, contact IT helpdesk at it@company.com.",
-    "action": "Explain IT setup process and provide support contact.",
+    "content": "IT will provide your laptop and set up your email, Slack, and other system accounts before your first day. You'll receive login credentials via email. If you have any issues accessing systems, contact IT helpdesk at {{it_support_email}}.",
+    "action": "Explain IT setup process and provide support contact. Replace {{it_support_email}} with the company's IT support email address.",
     "intents": [
       { "content": "What if I can't log in?", "targetNodeId": "it_support" },
       { "content": "Perfect, thank you", "targetNodeId": "end_conversation" }
@@ -141,8 +141,8 @@
   {
     "id": "payroll_error",
     "global": true,
-    "content": "I'm sorry to hear there's an error. I'll need to investigate this with payroll. Please email me at alex.chen@company.com with details of the discrepancy, and I'll work on getting it corrected within 48 hours.",
-    "action": "Apologize, provide contact for follow-up, and commit to resolution timeline.",
+    "content": "I'm sorry to hear there's an error. I'll need to investigate this with payroll. Please email me at {{hr_email}} with details of the discrepancy, and I'll work on getting it corrected within 48 hours.",
+    "action": "Apologize, provide contact for follow-up, and commit to resolution timeline. Replace {{hr_email}} with the HR representative's email address.",
     "intents": [
       { "content": "Okay, I'll email you", "targetNodeId": "end_conversation" },
       { "content": "When will it be fixed?", "targetNodeId": "payroll_correction_timeline" }

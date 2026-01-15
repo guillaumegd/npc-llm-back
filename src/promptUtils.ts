@@ -12,7 +12,8 @@ function preparePersonaSystemPrompt(characterId: number = 1): string {
 
   try {
     const personaContent = fs.readFileSync(personaFilePath, "utf-8");
-    return `You are an NPC character in a role-playing game. Your behavior and responses must strictly adhere to the following persona: \n\n${personaContent}\n\nStay in character at all times and provide immersive, engaging, and contextually appropriate responses.`;
+    // Use generic prompt that works for both gaming NPCs and business agents
+    return `You are a conversational agent. Your behavior and responses must strictly adhere to the following persona: \n\n${personaContent}\n\nStay in character at all times and provide contextually appropriate, professional, and engaging responses that match your role and expertise.`;
   } catch (error) {
     console.error(`Error reading persona${characterId}.txt:`, error);
     throw new Error("Failed to prepare system prompt.");
@@ -111,8 +112,8 @@ export async function answerTo(
  */
 function loadConversationNodes(characterId: number = 1): ConversationNode[] {
   // Validate characterId
-  if (characterId < 1 || characterId > 6) {
-    throw new Error(`Invalid characterId: ${characterId}. It must be between 1 and 6.`);
+  if (characterId < 1 || characterId > 9) {
+    throw new Error(`Invalid characterId: ${characterId}. It must be between 1 and 9.`);
   }
 
   const conversationFilePath = path.join(

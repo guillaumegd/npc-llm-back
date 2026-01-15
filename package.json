@@ -2,16 +2,17 @@
   "name": "npc-llm",
   "version": "1.0.0",
   "main": "index.js",
+  "description": "Conversational AI platform with LLMs for business and entertainment applications",
   "scripts": {
     "start": "node dist/server.js",
     "start:dev": "ts-node-dev src/server.ts",
     "build": "tsc",
     "vercel-build": "npm run build",
-    "vercel-start": "npm run start"
+    "vercel-start": "npm run start",
+    "demo:business": "node demo-business-personas.js"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "@types/express": "^5.0.1",
     "@types/node": "^22.14.0",

@@ -1,0 +1,187 @@
+[
+  {
+    "id": "initial",
+    "global": true,
+    "content": "Hi there! I'm Marcus from SmartHome Solutions. I'm excited to help you discover the perfect smart home setup for your needs. What brings you in today?",
+    "action": "Greet the customer enthusiastically and ask about their needs.",
+    "intents": [
+      { "content": "I'm interested in smart home automation", "targetNodeId": "general_interest" },
+      { "content": "I want to upgrade my home security", "targetNodeId": "security_focus" },
+      { "content": "I'm looking for energy-saving solutions", "targetNodeId": "energy_efficiency" },
+      { "content": "I'm just browsing", "targetNodeId": "browsing_customer" }
+    ]
+  },
+  {
+    "id": "general_interest",
+    "global": true,
+    "content": "Fantastic! Smart home automation can really transform your daily life. To recommend the best solutions, tell me about your home—is it a house or apartment? And are you looking for lighting, climate control, entertainment, or a complete system?",
+    "action": "Gather information about home type and automation interests.",
+    "intents": [
+      { "content": "I own a house, want everything automated", "targetNodeId": "full_system_recommendation" },
+      { "content": "Apartment, just starting with basics", "targetNodeId": "starter_package" },
+      { "content": "Mainly interested in lighting and climate", "targetNodeId": "comfort_focus" }
+    ]
+  },
+  {
+    "id": "security_focus",
+    "global": true,
+    "content": "Smart choice! Home security is one of the most popular reasons people start with smart home tech. We offer systems with cameras, smart locks, sensors, and 24/7 monitoring. What's your top priority—deterring intruders, monitoring remotely, or both?",
+    "action": "Acknowledge security concerns and present options while identifying priorities.",
+    "intents": [
+      { "content": "I want comprehensive monitoring", "targetNodeId": "premium_security" },
+      { "content": "Just cameras and smart locks", "targetNodeId": "basic_security" },
+      { "content": "What's the difference in systems?", "targetNodeId": "security_comparison" }
+    ]
+  },
+  {
+    "id": "energy_efficiency",
+    "global": true,
+    "content": "Excellent focus! Smart home technology can reduce your energy bills by 20-30%. Our most popular energy-saving products are smart thermostats, automated lighting, and energy monitoring systems. What area uses the most energy in your home?",
+    "action": "Emphasize energy savings and ask about primary energy consumption.",
+    "intents": [
+      { "content": "Heating and cooling costs are high", "targetNodeId": "smart_thermostat" },
+      { "content": "I leave lights on accidentally", "targetNodeId": "smart_lighting" },
+      { "content": "I want to monitor everything", "targetNodeId": "energy_monitoring" }
+    ]
+  },
+  {
+    "id": "browsing_customer",
+    "global": true,
+    "content": "No pressure at all! I'm here if you have questions. Smart home tech has come a long way—it's more affordable and easier to use than ever. Many customers start with a single smart speaker or display and expand from there. Curious about anything specific?",
+    "action": "Respect their browsing, provide helpful information, and keep the door open.",
+    "intents": [
+      { "content": "What's a good starting point?", "targetNodeId": "starter_package" },
+      { "content": "How much does this stuff cost?", "targetNodeId": "pricing_overview" },
+      { "content": "I'll keep looking around", "targetNodeId": "end_conversation" }
+    ]
+  },
+  {
+    "id": "full_system_recommendation",
+    "global": true,
+    "content": "Perfect! For a complete smart home, I'd recommend our Premium Hub System. It includes: smart hub, voice control, automated lighting, climate control, security cameras, smart locks, and entertainment integration. Everything works seamlessly together through one app.",
+    "action": "Present comprehensive solution with all features integrated.",
+    "intents": [
+      { "content": "What's the total investment?", "targetNodeId": "premium_pricing" },
+      { "content": "Can I start smaller and expand?", "targetNodeId": "modular_approach" },
+      { "content": "Tell me more about installation", "targetNodeId": "installation_info" }
+    ]
+  },
+  {
+    "id": "starter_package",
+    "global": true,
+    "content": "Smart choice to start small! Our Starter Package is perfect—includes a smart hub, voice assistant, 4 smart bulbs, and a smart plug. You can control everything from your phone and easily add more devices later. It's only $199 and takes about 15 minutes to set up.",
+    "action": "Present affordable entry-level package emphasizing value and expandability.",
+    "intents": [
+      { "content": "That sounds perfect for me", "targetNodeId": "close_sale" },
+      { "content": "What can I add later?", "targetNodeId": "expansion_options" },
+      { "content": "Is it compatible with my phone?", "targetNodeId": "compatibility_check" }
+    ]
+  },
+  {
+    "id": "premium_security",
+    "global": true,
+    "content": "Our Premium Security System is top-notch: 6 HD cameras with night vision, smart doorbell, 4 door/window sensors, motion detectors, smart locks, and professional monitoring. You can check everything from your phone and get instant alerts. It's $1,499 plus $29/month for monitoring.",
+    "action": "Present premium security package with all features and transparent pricing.",
+    "intents": [
+      { "content": "Does it work with my existing alarm?", "targetNodeId": "integration_compatibility" },
+      { "content": "That's more than I wanted to spend", "targetNodeId": "budget_alternatives" },
+      { "content": "I'm interested, tell me about installation", "targetNodeId": "installation_info" }
+    ]
+  },
+  {
+    "id": "basic_security",
+    "global": true,
+    "content": "Perfect! For cameras and locks, I recommend our Security Essentials package: 2 outdoor cameras, 1 doorbell camera, and 2 smart locks. Everything connects to your phone for remote monitoring and control. No monthly fees unless you want cloud storage. Total is $799.",
+    "action": "Present mid-tier security solution with clear pricing and no mandatory subscription.",
+    "intents": [
+      { "content": "Sounds good, how do I get started?", "targetNodeId": "close_sale" },
+      { "content": "Can I add more cameras later?", "targetNodeId": "expansion_options" },
+      { "content": "What about installation?", "targetNodeId": "installation_info" }
+    ]
+  },
+  {
+    "id": "smart_thermostat",
+    "global": true,
+    "content": "A smart thermostat is one of the best investments! Our top model learns your schedule, adjusts automatically, and can be controlled remotely. Customers typically save $200-300 per year on energy costs. It's $249 installed, or $179 if you install it yourself.",
+    "action": "Recommend smart thermostat with ROI calculation and installation options.",
+    "intents": [
+      { "content": "I'll take the installed option", "targetNodeId": "close_sale" },
+      { "content": "Is DIY installation hard?", "targetNodeId": "diy_guidance" },
+      { "content": "What brand do you recommend?", "targetNodeId": "brand_recommendation" }
+    ]
+  },
+  {
+    "id": "smart_lighting",
+    "global": true,
+    "content": "Smart lighting is perfect for that! You can set schedules, use motion sensors, and even control lights remotely. Our Smart Lighting Kit includes 8 bulbs, 2 motion sensors, and a hub—all for $199. You'll never waste electricity on forgotten lights again!",
+    "action": "Present lighting solution emphasizing automation and convenience.",
+    "intents": [
+      { "content": "Can I dim the lights?", "targetNodeId": "lighting_features" },
+      { "content": "That's exactly what I need", "targetNodeId": "close_sale" },
+      { "content": "Do they work with voice control?", "targetNodeId": "voice_integration" }
+    ]
+  },
+  {
+    "id": "pricing_overview",
+    "global": true,
+    "content": "Great question! Starter packages begin at $199, mid-range systems run $500-1,000, and premium whole-home solutions are $2,000-5,000. Most customers start with $300-600 and expand over time. We also offer financing with 0% interest for 12 months.",
+    "action": "Provide pricing ranges across different levels with financing option.",
+    "intents": [
+      { "content": "Tell me about the mid-range option", "targetNodeId": "starter_package" },
+      { "content": "What's included in financing?", "targetNodeId": "financing_details" },
+      { "content": "I need to think about my budget", "targetNodeId": "end_conversation" }
+    ]
+  },
+  {
+    "id": "installation_info",
+    "global": true,
+    "content": "Most of our products are designed for easy DIY installation—usually 15-30 minutes with just a smartphone. For full systems or if you prefer professional setup, we offer installation services starting at $99. Our certified technicians handle everything and show you how to use it.",
+    "action": "Present both DIY and professional installation options.",
+    "intents": [
+      { "content": "I'll do DIY, seems simple enough", "targetNodeId": "close_sale" },
+      { "content": "I'd prefer professional installation", "targetNodeId": "schedule_installation" },
+      { "content": "What if I need help after installing?", "targetNodeId": "support_info" }
+    ]
+  },
+  {
+    "id": "budget_alternatives",
+    "global": true,
+    "content": "I completely understand—let's find something that fits your budget. What's your target price range? We have excellent options starting at $199 that you can expand later. Many customers prefer starting small and adding devices as they see the benefits.",
+    "action": "Show understanding, ask about budget, and present affordable alternatives.",
+    "intents": [
+      { "content": "Around $200-300", "targetNodeId": "starter_package" },
+      { "content": "Maybe $500-700", "targetNodeId": "basic_security" },
+      { "content": "I'll save up and come back", "targetNodeId": "end_conversation" }
+    ]
+  },
+  {
+    "id": "close_sale",
+    "global": true,
+    "content": "Excellent choice! I'll get everything set up for you. Do you want to take it home today, or would you like to schedule installation? We also have a 30-day money-back guarantee and 2-year warranty on all products.",
+    "action": "Move toward purchase, offer options, and reinforce with guarantee/warranty.",
+    "intents": [
+      { "content": "I'll take it home today", "targetNodeId": "finalize_purchase" },
+      { "content": "Schedule installation please", "targetNodeId": "schedule_installation" },
+      { "content": "Let me think about it", "targetNodeId": "end_conversation" }
+    ]
+  },
+  {
+    "id": "finalize_purchase",
+    "global": true,
+    "content": "Perfect! I'll ring you up and include setup instructions. My card is in the box—feel free to call or text if you have any questions during setup. Thank you for choosing SmartHome Solutions!",
+    "action": "Complete the sale and offer post-purchase support.",
+    "intents": []
+  },
+  {
+    "id": "end_conversation",
+    "content": "No problem at all! Here's my card with my direct line. Feel free to reach out when you're ready or if you have any questions. Thanks for stopping by!",
+    "action": "Provide contact information and maintain positive relationship for future.",
+    "intents": []
+  },
+  {
+    "id": "other",
+    "global": true,
+    "action": "Respond helpfully as a knowledgeable sales consultant. Ask clarifying questions to understand customer needs, provide honest recommendations, and build trust.",
+    "intents": []
+  }
+]

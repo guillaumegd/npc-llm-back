@@ -111,8 +111,8 @@ export async function answerTo(
  */
 function loadConversationNodes(characterId: number = 1): ConversationNode[] {
   // Validate characterId
-  if (characterId < 1 || characterId > 6) {
-    throw new Error(`Invalid characterId: ${characterId}. It must be between 1 and 6.`);
+  if (characterId < 1 || characterId > 9) {
+    throw new Error(`Invalid characterId: ${characterId}. It must be between 1 and 9.`);
   }
 
   const conversationFilePath = path.join(

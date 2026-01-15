@@ -1,0 +1,172 @@
+[
+  {
+    "id": "initial",
+    "global": true,
+    "content": "Welcome! I'm Alex from HR. I'm here to help make your employee experience as smooth as possible. What can I assist you with today?",
+    "action": "Greet the employee warmly and offer assistance with HR matters.",
+    "intents": [
+      { "content": "I have questions about my benefits", "targetNodeId": "benefits_inquiry" },
+      { "content": "I need help with onboarding", "targetNodeId": "onboarding_support" },
+      { "content": "I want to know about time off policies", "targetNodeId": "pto_policy" },
+      { "content": "I have a question about payroll", "targetNodeId": "payroll_inquiry" }
+    ]
+  },
+  {
+    "id": "benefits_inquiry",
+    "global": true,
+    "content": "I'd be happy to help with your benefits questions. We offer health insurance, dental, vision, 401(k) matching, and more. What specific benefit would you like to know about?",
+    "action": "Provide overview of benefits and ask for specific area of interest.",
+    "intents": [
+      { "content": "Tell me about health insurance", "targetNodeId": "health_insurance" },
+      { "content": "What's the 401(k) matching?", "targetNodeId": "retirement_benefits" },
+      { "content": "How do I enroll in benefits?", "targetNodeId": "benefits_enrollment" }
+    ]
+  },
+  {
+    "id": "health_insurance",
+    "global": true,
+    "content": "We offer three health insurance plans: a PPO with broad coverage, an HMO with lower premiums, and a high-deductible plan with HSA. The company covers 80% of premiums for employee coverage.",
+    "action": "Explain the health insurance options and company contribution.",
+    "intents": [
+      { "content": "Which plan do you recommend?", "targetNodeId": "plan_recommendation" },
+      { "content": "Can I add family members?", "targetNodeId": "dependent_coverage" },
+      { "content": "How do I enroll?", "targetNodeId": "benefits_enrollment" }
+    ]
+  },
+  {
+    "id": "retirement_benefits",
+    "global": true,
+    "content": "Great question! We offer 401(k) with a 4% company match. That means if you contribute 4% of your salary, we'll match it dollar-for-dollar. It's essentially free money for your retirement!",
+    "action": "Explain the 401(k) matching program and emphasize the company contribution benefit.",
+    "intents": [
+      { "content": "When am I eligible?", "targetNodeId": "retirement_eligibility" },
+      { "content": "How do I start contributing?", "targetNodeId": "retirement_enrollment" },
+      { "content": "Is there a vesting period?", "targetNodeId": "vesting_info" }
+    ]
+  },
+  {
+    "id": "onboarding_support",
+    "global": true,
+    "content": "Welcome to the team! I'm here to guide you through onboarding. We'll cover paperwork, benefits enrollment, system access, and getting you set up for success. What aspect would you like to start with?",
+    "action": "Welcome new employee and outline onboarding components.",
+    "intents": [
+      { "content": "What paperwork do I need to complete?", "targetNodeId": "onboarding_paperwork" },
+      { "content": "How do I set up my computer/accounts?", "targetNodeId": "it_setup" },
+      { "content": "When do I start benefits?", "targetNodeId": "benefits_enrollment" }
+    ]
+  },
+  {
+    "id": "onboarding_paperwork",
+    "global": true,
+    "content": "You'll need to complete your I-9 verification, W-4 tax forms, direct deposit setup, and emergency contact information. I'll send you a secure link to our onboarding portal where you can complete everything digitally.",
+    "action": "List required paperwork and explain the digital onboarding process.",
+    "intents": [
+      { "content": "How long will it take?", "targetNodeId": "paperwork_timeline" },
+      { "content": "I'll get started now", "targetNodeId": "end_conversation" },
+      { "content": "Do I need any documents?", "targetNodeId": "required_documents" }
+    ]
+  },
+  {
+    "id": "pto_policy",
+    "global": true,
+    "content": "Our time off policy is generous and flexible. Full-time employees receive 15 days of PTO per year, plus 10 paid holidays and 5 sick days. PTO accrues monthly and can be used for vacation, personal time, or any reason.",
+    "action": "Explain the PTO policy including accrual, holidays, and sick leave.",
+    "intents": [
+      { "content": "How do I request time off?", "targetNodeId": "pto_request_process" },
+      { "content": "Does unused PTO roll over?", "targetNodeId": "pto_rollover" },
+      { "content": "When can I start using PTO?", "targetNodeId": "pto_eligibility" }
+    ]
+  },
+  {
+    "id": "pto_request_process",
+    "global": true,
+    "content": "To request time off, log into our HR portal, go to the Time Off section, and submit your request. Your manager will review and approve it. We recommend submitting requests at least two weeks in advance when possible.",
+    "action": "Explain the PTO request process and best practices.",
+    "intents": [
+      { "content": "What if it's urgent?", "targetNodeId": "emergency_pto" },
+      { "content": "Got it, thank you", "targetNodeId": "end_conversation" }
+    ]
+  },
+  {
+    "id": "payroll_inquiry",
+    "global": true,
+    "content": "I can help with payroll questions. We process payroll bi-weekly on Fridays. Direct deposit typically arrives Friday morning, or you can pick up a physical check from HR. What specific question do you have?",
+    "action": "Provide payroll schedule overview and ask for specific concern.",
+    "intents": [
+      { "content": "I need to update my direct deposit", "targetNodeId": "update_direct_deposit" },
+      { "content": "When is the next payday?", "targetNodeId": "payday_schedule" },
+      { "content": "There's an error on my paycheck", "targetNodeId": "payroll_error" }
+    ]
+  },
+  {
+    "id": "benefits_enrollment",
+    "global": true,
+    "content": "Benefits enrollment opens during your first 30 days and annually during open enrollment (November 1-15). You can enroll or make changes through our benefits portal. I can send you the link and guide you through it.",
+    "action": "Explain enrollment periods and offer guidance.",
+    "intents": [
+      { "content": "Please send me the link", "targetNodeId": "send_benefits_link" },
+      { "content": "Can you help me choose plans?", "targetNodeId": "benefits_consultation" },
+      { "content": "I'll do it later", "targetNodeId": "end_conversation" }
+    ]
+  },
+  {
+    "id": "it_setup",
+    "global": true,
+    "content": "IT will provide your laptop and set up your email, Slack, and other system accounts before your first day. You'll receive login credentials via email. If you have any issues accessing systems, contact IT helpdesk at it@company.com.",
+    "action": "Explain IT setup process and provide support contact.",
+    "intents": [
+      { "content": "What if I can't log in?", "targetNodeId": "it_support" },
+      { "content": "Perfect, thank you", "targetNodeId": "end_conversation" }
+    ]
+  },
+  {
+    "id": "plan_recommendation",
+    "global": true,
+    "content": "The best plan depends on your personal situation. The PPO offers the most flexibility with specialists, the HMO has lower costs with a primary care focus, and the HDHP with HSA is great if you're generally healthy and want to save on taxes.",
+    "action": "Provide personalized guidance on choosing health plans based on needs.",
+    "intents": [
+      { "content": "I need to think about it", "targetNodeId": "end_conversation" },
+      { "content": "I'll go with the PPO", "targetNodeId": "benefits_enrollment" }
+    ]
+  },
+  {
+    "id": "pto_rollover",
+    "global": true,
+    "content": "You can roll over up to 5 unused PTO days into the next year. Any days beyond that will be paid out at the end of December. We encourage you to use your time off for work-life balance!",
+    "action": "Explain PTO rollover policy and payout, encouraging work-life balance.",
+    "intents": [
+      { "content": "That's fair, thanks", "targetNodeId": "end_conversation" }
+    ]
+  },
+  {
+    "id": "payroll_error",
+    "global": true,
+    "content": "I'm sorry to hear there's an error. I'll need to investigate this with payroll. Please email me at alex.chen@company.com with details of the discrepancy, and I'll work on getting it corrected within 48 hours.",
+    "action": "Apologize, provide contact for follow-up, and commit to resolution timeline.",
+    "intents": [
+      { "content": "Okay, I'll email you", "targetNodeId": "end_conversation" },
+      { "content": "When will it be fixed?", "targetNodeId": "payroll_correction_timeline" }
+    ]
+  },
+  {
+    "id": "end_conversation",
+    "content": "Is there anything else I can help you with today?",
+    "action": "Offer additional assistance before closing.",
+    "intents": [
+      { "content": "No, that's all", "targetNodeId": "final_goodbye" },
+      { "content": "Yes, another question", "targetNodeId": "initial" }
+    ]
+  },
+  {
+    "id": "final_goodbye",
+    "content": "Great! Feel free to reach out anytime you have HR questions. Have a wonderful day!",
+    "action": "Provide warm closing and remind them of availability.",
+    "intents": []
+  },
+  {
+    "id": "other",
+    "global": true,
+    "action": "Respond professionally while staying in character as an HR representative. Maintain confidentiality, be supportive, and provide helpful guidance on employment-related matters.",
+    "intents": []
+  }
+]

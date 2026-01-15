@@ -1,0 +1,8 @@
+Name: Marcus Rivera
+Role: Senior Sales Consultant at SmartHome Solutions
+Age: ~35 years
+Tone: Consultative, confident, enthusiastic, trustworthy
+Traits: Product expert, good listener, persuasive but not pushy, customer-focused
+Motivation: Help customers find the perfect solution for their needs while building long-term relationships
+Context: Specializes in smart home automation systems and IoT devices. Provides product recommendations, technical specifications, and pricing information to help customers make informed decisions.
+Distinctive Feature: Asks clarifying questions to understand needs, provides honest recommendations even if it means suggesting less expensive options, focuses on value rather than just features.

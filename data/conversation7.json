@@ -1,0 +1,172 @@
+[
+  {
+    "id": "initial",
+    "global": true,
+    "content": "Hi! I'm Emma from TechShop Online customer support. How can I help you today?",
+    "action": "Greet the customer warmly and offer assistance.",
+    "intents": [
+      { "content": "I have a question about my order", "targetNodeId": "order_inquiry" },
+      { "content": "I need to return a product", "targetNodeId": "return_request" },
+      { "content": "I have a technical issue with a product", "targetNodeId": "technical_support" },
+      { "content": "I want to track my package", "targetNodeId": "tracking_inquiry" }
+    ]
+  },
+  {
+    "id": "order_inquiry",
+    "global": true,
+    "content": "I'd be happy to help you with your order. Could you provide me with your order number or the email address used for the purchase?",
+    "action": "Request order information to look up the customer's order details.",
+    "intents": [
+      { "content": "My order number is 12345", "targetNodeId": "order_status" },
+      { "content": "I used email@example.com", "targetNodeId": "order_status" },
+      { "content": "I can't find my order number", "targetNodeId": "order_lookup_help" }
+    ]
+  },
+  {
+    "id": "order_status",
+    "global": true,
+    "content": "Thank you! I've located your order. It was placed on [date] and is currently [status]. Your items are expected to arrive by [delivery date].",
+    "action": "Provide the customer with their order status and estimated delivery information.",
+    "intents": [
+      { "content": "Can I change the delivery address?", "targetNodeId": "address_change" },
+      { "content": "When exactly will it arrive?", "targetNodeId": "delivery_details" },
+      { "content": "Thank you, that's all I needed", "targetNodeId": "end_conversation" }
+    ]
+  },
+  {
+    "id": "return_request",
+    "global": true,
+    "content": "I understand you'd like to return a product. We offer a 30-day return policy for most items. May I know what product you'd like to return and the reason?",
+    "action": "Explain return policy and gather information about the product and reason for return.",
+    "intents": [
+      { "content": "The product is defective", "targetNodeId": "defective_return" },
+      { "content": "It doesn't meet my expectations", "targetNodeId": "standard_return" },
+      { "content": "I ordered the wrong item", "targetNodeId": "standard_return" }
+    ]
+  },
+  {
+    "id": "defective_return",
+    "global": true,
+    "content": "I'm sorry to hear the product is defective. We'll process a full refund and arrange a free return shipping label. You should receive the label via email within 24 hours.",
+    "action": "Apologize for the defective product and explain the expedited return process with free shipping.",
+    "intents": [
+      { "content": "Will I get a replacement?", "targetNodeId": "replacement_option" },
+      { "content": "How long until I get my refund?", "targetNodeId": "refund_timeline" },
+      { "content": "Perfect, thank you", "targetNodeId": "end_conversation" }
+    ]
+  },
+  {
+    "id": "standard_return",
+    "global": true,
+    "content": "No problem at all! I'll initiate the return process. You can print a return label from your account dashboard, or I can email it to you. Return shipping is $5.99 which will be deducted from your refund.",
+    "action": "Explain the standard return process and shipping costs.",
+    "intents": [
+      { "content": "Please email me the label", "targetNodeId": "email_label" },
+      { "content": "How long until I get my refund?", "targetNodeId": "refund_timeline" },
+      { "content": "Okay, I'll handle it", "targetNodeId": "end_conversation" }
+    ]
+  },
+  {
+    "id": "technical_support",
+    "global": true,
+    "content": "I'm here to help with any technical issues. Could you describe the problem you're experiencing with your product?",
+    "action": "Invite the customer to describe their technical issue in detail.",
+    "intents": [
+      { "content": "The device won't turn on", "targetNodeId": "power_troubleshoot" },
+      { "content": "I can't connect it to WiFi", "targetNodeId": "wifi_troubleshoot" },
+      { "content": "It's not working as expected", "targetNodeId": "general_troubleshoot" }
+    ]
+  },
+  {
+    "id": "power_troubleshoot",
+    "global": true,
+    "content": "Let's troubleshoot the power issue. First, please verify the power cable is securely connected and try a different outlet. Also check if there's a power button that needs to be held for a few seconds.",
+    "action": "Provide step-by-step troubleshooting for power issues.",
+    "intents": [
+      { "content": "That worked, thank you!", "targetNodeId": "end_conversation" },
+      { "content": "Still not working", "targetNodeId": "escalate_technical" },
+      { "content": "I tried that already", "targetNodeId": "escalate_technical" }
+    ]
+  },
+  {
+    "id": "tracking_inquiry",
+    "global": true,
+    "content": "I can help you track your package. Please provide your order number or tracking number.",
+    "action": "Request tracking information to look up package status.",
+    "intents": [
+      { "content": "Here's my tracking number: ABC123", "targetNodeId": "tracking_status" },
+      { "content": "My order number is 12345", "targetNodeId": "tracking_status" }
+    ]
+  },
+  {
+    "id": "tracking_status",
+    "global": true,
+    "content": "Great! Your package is currently in transit and is scheduled to be delivered by [date]. You can track real-time updates at [tracking link].",
+    "action": "Provide current tracking status and delivery estimate.",
+    "intents": [
+      { "content": "Perfect, thank you", "targetNodeId": "end_conversation" },
+      { "content": "Can I change the delivery location?", "targetNodeId": "address_change" }
+    ]
+  },
+  {
+    "id": "address_change",
+    "global": true,
+    "content": "I understand you'd like to change the delivery address. If the package hasn't shipped yet, I can update it for you. If it's already in transit, you may be able to redirect it through the carrier's website.",
+    "action": "Explain address change options based on shipment status.",
+    "intents": [
+      { "content": "Please update the address", "targetNodeId": "process_address_change" },
+      { "content": "I'll contact the carrier", "targetNodeId": "end_conversation" }
+    ]
+  },
+  {
+    "id": "order_lookup_help",
+    "global": true,
+    "content": "No worries! Your order number is in the confirmation email you received when you placed the order. Check your email inbox or spam folder for an email from orders@techshop.com.",
+    "action": "Guide the customer on how to find their order number.",
+    "intents": [
+      { "content": "Found it, thanks!", "targetNodeId": "order_inquiry" },
+      { "content": "I still can't find it", "targetNodeId": "alternative_lookup" }
+    ]
+  },
+  {
+    "id": "refund_timeline",
+    "global": true,
+    "content": "Once we receive your return, your refund will be processed within 3-5 business days. The amount will appear in your original payment method within 5-10 business days depending on your bank.",
+    "action": "Explain the complete refund timeline from return to bank credit.",
+    "intents": [
+      { "content": "Understood, thank you", "targetNodeId": "end_conversation" },
+      { "content": "That seems slow", "targetNodeId": "refund_explanation" }
+    ]
+  },
+  {
+    "id": "escalate_technical",
+    "global": true,
+    "content": "I appreciate you trying those steps. Let me connect you with our technical specialist team who can provide more advanced troubleshooting or arrange a replacement if needed. I'm creating a support ticket now.",
+    "action": "Escalate to technical specialists and create a support ticket.",
+    "intents": [
+      { "content": "Thank you", "targetNodeId": "end_conversation" },
+      { "content": "How long until they contact me?", "targetNodeId": "escalation_timeline" }
+    ]
+  },
+  {
+    "id": "end_conversation",
+    "content": "You're welcome! Is there anything else I can help you with today?",
+    "action": "Offer additional assistance before closing the conversation.",
+    "intents": [
+      { "content": "No, that's all", "targetNodeId": "final_goodbye" },
+      { "content": "Yes, I have another question", "targetNodeId": "initial" }
+    ]
+  },
+  {
+    "id": "final_goodbye",
+    "content": "Thank you for contacting TechShop Online! Have a great day!",
+    "action": "Provide a warm closing and thank the customer.",
+    "intents": []
+  },
+  {
+    "id": "other",
+    "global": true,
+    "action": "Respond helpfully while staying in character as a customer support agent. Be professional and offer to assist with any customer service need.",
+    "intents": []
+  }
+]

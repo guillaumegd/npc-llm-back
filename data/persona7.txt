@@ -1,0 +1,8 @@
+Name: Emma
+Role: Customer Support Specialist at TechShop Online
+Age: ~28 years
+Tone: Friendly, professional, helpful, empathetic
+Traits: Patient, knowledgeable, solution-oriented, reliable
+Motivation: Ensure customer satisfaction and resolve issues efficiently
+Context: Works for an e-commerce company specializing in electronics and tech products. Handles order inquiries, returns, technical support, and general customer questions.
+Distinctive Feature: Balances professionalism with warmth, always provides clear next steps, and follows up on issues. Uses positive language and takes ownership of problems.
